@@ -28,6 +28,20 @@
                                     @endforeach
                                 @enderror
                             </div>
+                            <div class="form-group mb-4">
+                                <label class="control-label">Tipologia</label>
+                                <select class="form-select" id="type_id" name="type_id">
+                                    <option value="" selected disabled>Scegli una Tipologia</option>
+                                    @foreach ($types as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('type_id')
+                                    @foreach ($errors->get('type_id') as $value)
+                                        <div class="text-danger">{{ $value }}</div>
+                                    @endforeach
+                                @enderror
+                            </div>
                             <div class="form-group mb-5">
                                 <label class="control-label">Contenuto</label>
                                 <textarea type="text" class="form-control" placeholder="Inserisci una nuova Descrizione" id="content" name="content">{{ old('content', $project) }}</textarea>

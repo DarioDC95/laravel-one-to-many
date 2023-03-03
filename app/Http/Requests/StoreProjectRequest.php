@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Faker\Provider\Lorem;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProjectRequest extends FormRequest
@@ -26,6 +27,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'title' => ['required', 'unique:projects', 'max:150'],
             'content' => ['nullable'],
+            'type_id' => ['nullable', 'numeric', 'exists:types,id']
         ];
     }
 
@@ -40,6 +42,8 @@ class StoreProjectRequest extends FormRequest
             'title.required' => 'Il titolo è obbligatorio',
             'title.unique' => 'Il titolo deve essere unico',
             'title.max' => 'Il titolo deve avere al massimo :max caratteri',
+            'type_id.numeric' => 'la tipologia deve essere obbligatoriamente un numero',
+            'type_id.exists' => 'la tipologia selezionata non è valida'
         ];
     }
 }

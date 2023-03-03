@@ -27,7 +27,8 @@ class UpdateProjectRequest extends FormRequest
     {
         return [
             'title' => ['required', Rule::unique('projects')->ignore($this->project), 'max:150'],
-            'content' => ['nullable']
+            'content' => ['nullable'],
+            'type_id' => ['nullable', 'numeric', 'exists:types,id']
         ];
     }
 
@@ -42,6 +43,8 @@ class UpdateProjectRequest extends FormRequest
             'title.required' => 'Il titolo è obbligatorio',
             'title.unique' => 'Il titolo deve essere unico',
             'title.max' => 'Il titolo deve avere al massimo :max caratteri',
+            'type_id.numeric' => 'la tipologia deve essere obbligatoriamente un numero',
+            'type_id.exists' => 'la tipologia selezionata non è valida'
         ];
     }
 }
