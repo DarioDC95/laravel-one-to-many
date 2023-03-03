@@ -21,7 +21,7 @@
                         @method('PUT')
                             <div class="form-group mb-4">
                                 <label class="control-label">Titolo</label>
-                                <input type="text" class="form-control" placeholder="Inserisci un nuovo titolo" id="title" name="title">
+                                <input type="text" class="form-control" placeholder="Inserisci un nuovo titolo" id="title" name="title" value="{{ old('title', $project) }}">
                                 @error('title')
                                     @foreach ($errors->get('title') as $value)
                                         <div class="text-danger">{{ $value }}</div>
@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group mb-5">
                                 <label class="control-label">Contenuto</label>
-                                <textarea type="text" class="form-control" placeholder="Inserisci una nuova Descrizione" id="content" name="content"></textarea>
+                                <textarea type="text" class="form-control" placeholder="Inserisci una nuova Descrizione" id="content" name="content">{{ old('content', $project) }}</textarea>
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-primary">Salva Modifica</button>
