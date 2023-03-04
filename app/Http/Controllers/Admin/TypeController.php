@@ -28,7 +28,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -39,7 +39,20 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $form_data = $request->validated();
+
+        $slug = Type::generateSlug($request->name);
+
+        // AGGIUNGO UNA COPPIA CHIAVE/VALORE ALL'ARRAY $form_data
+        $form_data['slug'] = $slug;
+
+        /* 
+        $newProject = new Type();
+        $newProject->fill($form_data); */
+        // QUESTE DUE OPERAZIONI LE POSSO SVOLGERE IN UN UNICO METODO:
+        $newType = Type::create($form_data);
+
+        return redirect()->route('admin.types.index')->with('message', 'La Tipologia è stata aggiunta correttamente');
     }
 
     /**
@@ -63,7 +76,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -75,7 +88,15 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $form_data = $request->validated();
+
+        $slug = Type::generateSlug($request->name);
+
+        $form_data['slug'] = $slug;
+
+        $type->update($form_data);
+
+        return redirect()->route('admin.types.index')->with('message', 'Il Progetto è stato modificato correttamente');
     }
 
     /**
@@ -86,6 +107,8 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+
+        return redirect()->route('admin.types.index')->with('message', 'La tipologia è stata eliminata correttamente');
     }
 }

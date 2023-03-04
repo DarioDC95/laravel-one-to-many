@@ -70,7 +70,7 @@
                                             Non hai nessun progetto, clicca su aggiungi progetto per iniziare <span class="fw-semibold text-primary text-decoration-underline">o in basso per riempirla a caso</span>
                                         </div>
                                         <div>
-                                            <a href="{{ route('admin.seeder') }}" class="btn btn-primary">Riempi la tabella progetti</a>
+                                            <a href="{{ route('admin.seederProject') }}" class="btn btn-primary">Riempi la tabella progetti</a>
                                         </div>
                                     </div>
                                 @endforelse

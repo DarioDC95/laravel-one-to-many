@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Faker\Provider\Lorem;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProjectRequest extends FormRequest

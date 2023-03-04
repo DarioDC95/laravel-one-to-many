@@ -11,7 +11,7 @@
                                 <h2>Elenco Projects</h2>
                             </div>
                             <div>
-                                <a href="{{ route('admin.projects.create') }}" class="btn btn-primary">Aggiungi un Progetto</a>
+                                <a href="{{ route('admin.types.create') }}" class="btn btn-primary">Aggiungi una nuova Tipologia</a>
                             </div>
                         </div>
                     </div>
@@ -59,10 +59,10 @@
                                     @empty 
                                     <div class="mb-4">
                                         <div class="d-inline-block alert alert-success">
-                                            Non hai nessun progetto, clicca su aggiungi progetto per iniziare <span class="fw-semibold text-primary text-decoration-underline">o in basso per riempirla a caso</span>
+                                            Non hai nessun progetto, clicca su aggiungi progetto per iniziare <span class="fw-semibold text-primary text-decoration-underline">o in basso per riempirla di default</span>
                                         </div>
                                         <div>
-                                            <a href="{{ route('admin.seeder') }}" class="btn btn-primary">Riempi la tabella progetti</a>
+                                            <a href="{{ route('admin.seederType') }}" class="btn btn-primary">Riempi la tabella progetti</a>
                                         </div>
                                     </div>
                                 @endforelse

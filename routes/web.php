@@ -36,13 +36,18 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     // PROJECT CONTROLLER
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
-    // PROVA DI LANCIO DI UN COMANDO DI SEEDER DALLA VIEW
-    Route::get('/reset', function(){
+    // PROVA DI LANCIO DI UN COMANDO DI SEEDER DALLA VIEW DI PROJECT
+    Route::get('/fillProject', function(){
         Artisan::call('db:seed', ['--class' => 'ProjectSeeder']);
         return redirect()->route('admin.projects.index')->with('message', 'I Progetti sono stati creati correttamente');
-    })->name('seeder');
+    })->name('seederProject');
     // TYPE CONTROLLER
     Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
+    // PROVA DI LANCIO DI UN COMANDO DI SEEDER DALLA VIEW di TYPE
+    Route::get('/fillType', function(){
+        Artisan::call('db:seed', ['--class' => 'TypeSeeder']);
+        return redirect()->route('admin.projects.index')->with('message', 'Le Tipologie sono state create correttamente');
+    })->name('seederType');
 });
 
 Route::middleware('auth')->group(function () {
