@@ -17,8 +17,8 @@ class Project extends Model
         return Str::slug($title, '-');
     }
 
-    public function types(): BelongsTo 
+    public function type(): BelongsTo 
     {
-        return $this->belongsTo(Type::class, 'type_id');
+        return $this->belongsTo(Type::class);
     }
 }

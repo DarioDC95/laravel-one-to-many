@@ -30,6 +30,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <th>id</th>
+                                <th>Tipologia</th>
                                 <th>Titolo</th>
                                 <th>Slug</th>
                                 <th>Azioni</th>
@@ -38,6 +39,13 @@
                                 @forelse ( $projects as $project )
                                     <tr>
                                         <td>{{ $project->id }}</td>
+                                        <td>
+                                            @if ($project->type_id)
+                                                {{ $project->type->name }}
+                                            @else
+                                                <span class="text-secondary">NON disponibile</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $project->title }}</td>
                                         <td>{{ $project->slug }}</td>
                                         <td class="d-flex">

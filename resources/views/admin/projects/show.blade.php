@@ -9,10 +9,10 @@
                         <h2>{{ $project->title }}</h2>
                     </div>
                     <div class="col-12 mb-5">
-                        @if ($project->types)
-                            <div>Tipologia: {{ $project->types->name }}</div>              
+                        @if ($project->type)
+                            <div>Tipologia: <span class="fw-semibold fs-5">{{ $project->type->name }}</span></div>              
                         @else
-                            <div class="text-secondary">NON contiene tipologia</div>
+                            <div class="fw-semibold text-secondary">NON contiene tipologia</div>
                         @endif
                     </div>
                     <div class="col-12">

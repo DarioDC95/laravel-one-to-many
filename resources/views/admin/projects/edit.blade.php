@@ -33,7 +33,7 @@
                                 <select class="form-select" id="type_id" name="type_id">
                                     <option value="" selected disabled>Scegli una Tipologia</option>
                                     @foreach ($types as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        <option value="{{ $item->id }}" @selected(old('id', $item) == $project->type_id)>{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('type_id')
