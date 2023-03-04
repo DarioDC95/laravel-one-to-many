@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -31,18 +32,17 @@ Route::get('/', function () {
 
 // QUESTO E' IL METODO DI GRUPPO
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function() {
+    // DASHBOARD
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    // PROJECT CONTROLLER
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
-    Route::get('/fill', function(){
-        Artisan::call('db:seed', ['--class' => 'ProjectSeeder']);
-        return redirect()->route('admin.projects.index')->with('message', 'I Progetti sono stati creati correttamente');
-    })->name('seeder');
-    
     // PROVA DI LANCIO DI UN COMANDO DI SEEDER DALLA VIEW
     Route::get('/reset', function(){
         Artisan::call('db:seed', ['--class' => 'ProjectSeeder']);
         return redirect()->route('admin.projects.index')->with('message', 'I Progetti sono stati creati correttamente');
     })->name('seeder');
+    // TYPE CONTROLLER
+    Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
 });
 
 Route::middleware('auth')->group(function () {

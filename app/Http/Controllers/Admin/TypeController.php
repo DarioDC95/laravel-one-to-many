@@ -18,7 +18,7 @@ class TypeController extends Controller
     {
         $types = Type::all();
 
-        return view('admin.projects.index', compact('types'));
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -50,7 +50,9 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        $new = $type->projects;
+
+        return view('admin.types.show', compact('type'));
     }
 
     /**
